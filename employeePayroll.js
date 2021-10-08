@@ -1,6 +1,4 @@
 class EmployeePayrollData{
-    id;
-    salary;
     gender;
     startDate;
     constructor(...params){
@@ -16,6 +14,24 @@ class EmployeePayrollData{
         if(nameRegex.test(name))
         this._name=name;
     }
+    get id(){return this._id}
+    set id(id){
+        let idRegex=RegExp('^[1-9][0-9]*$');
+        if(idRegex.test(id))
+        this._id=id;
+    }
+    get salary(){return this._salary}
+    set salary(salary){
+        let salaryRegex=RegExp('^[1-9][0-9]*$');
+        if(salaryRegex.test(salary))
+        this._salary=salary;
+    }
+    get gender(){return this._gender}
+    set gender(gender){
+        let genderRegex=RegExp('^[1-9][0-9]*$');
+        if(genderRegex.test(gender))
+        this._gender=gender;
+    }
     toString(){
         const options={year: 'numeric',month: 'long',day: 'numeric'};
         const empDate=this.startDate===undefined ? "undefined":
@@ -28,6 +44,24 @@ console.log(employeePayrollData.toString());
 try{
 employeePayrollData.name="David";
 console.log(employeePayrollData.toString());
+}catch(e){
+    console.error(e);
+}
+try{
+    employeePayrollData.id=2;
+    console.log(employeePayrollData.toString());
+}catch(e){
+    console.error(e);
+}
+try{
+    employeePayrollData.salary=48555;
+    console.log(employeePayrollData.toString());
+}catch(e){
+    console.error(e);
+}
+try{
+    employeePayrollData.gender="Male";
+    console.log(employeePayrollData.toString());
 }catch(e){
     console.error(e);
 }
