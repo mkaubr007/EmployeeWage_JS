@@ -7,9 +7,50 @@ const NUM_OF_WORKING_DAYS=20;
 const MAX_HRS_IN_MONTH=160;
 let totalEmpHrs=0;
 let totalWorkingDays=0;
+let totEmpWage=0;
 let empHrs=0; 
 let empDailyWageArr=new Array();
 let empCheck=Math.floor(Math.random()*10)%3;
+function sum(dailyWage){
+    totEmpWage+=dailyWage;
+}
+empDailyWageArr.forEach(sum);
+console.log("Total Days: "+totalWorkingDays+" Total rs: "+totalEmpHrs+" Emp Wage"+totEmpWage);
+function totWages(totalWage,dailyWage){
+    return totalWage+dailyWage;
+}
+console.log("Emp Wage with reduce"+empDailyWageArr.reduce(totWages,0));
+let dailyCntr=0;
+function mapDayWithWage(dailyWage){
+    dailyCntr++;
+    return dailyCntr +"=" +dailyWage;
+}
+let mapDayWithWageArr=empDailyWageArr.map(mapDayWithWage);
+console.log("Daily Wage Map");
+console.log(mapDayWithWageArr);
+function fulltimeWage(dailyWage){
+    return dailyWage.includes("160");
+}
+let fulldayWageArr=mapDayWithWageArr.filter(fulltimeWage);
+console.log("Daily Wage Filter When full time Wage Earned");
+console.log(fulldayWageArr);
+function findFulltimeWage(dailyWage){
+    return dailyWage.includes("160");
+}
+console.log("First time Fulltime was earned on Day: "+mapDayWithWageArr.find(findFulltimeWage));
+function isAllFulltimeWage(dailyWage){
+    return dailyWage.includes("160");
+}
+console.log("Check All Element has Full time Wage"+fulldayWageArr.every(isAllFulltimeWage));
+function isAnyPartTimeWage(dailyWage){
+    return dailyWage.includes("80");
+}
+console.log("Check If Any Part Time Wage"+mapDayWithWageArr.some(isAnyPartTimeWage));
+function totalDayWorked(numOfDays,dailyWage){
+    if(dailyWage>0) return numOfDays+1;
+    return numOfDays;
+}
+console.log("Number of Days Emp Worked"+empDailyWageArr.reduce(totalDayWorked,0));
 function getWorkingHours(empCheck){
     switch(empCheck){
         case IS_PART_TIME:
