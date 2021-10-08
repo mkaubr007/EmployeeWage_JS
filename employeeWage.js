@@ -84,4 +84,22 @@ while(totalEmpHrs<MAX_HRS_IN_MONTH && totalWorkingDays<NUM_OF_WORKING_DAYS){
 }
 let empWage=calcDailyWage(totalEmpHrs);
 console.log("Emp Wage Map totalHrs: "+Array.from(empDailyWageMap.values()).reduce(totWages,0));
+const findTotal=(totalVal,dailyVal)=>{
+    return totalVal+dailyVal;
+}
+let count =0;
+let totalHours=Array.from(empDailyWageMap.values()).reduce(findTotal,0);
+let totalSalary=empDailyWageArr.filter(dailyWage => dailyWage>0).reduce(findTotal,0);
+console.log("Emp Wage Wage with Arrow: "+"Total Hours"+totalHours+"Total Wage"+totalSalary);
+let nonWorkingDays=new Array();
+let parWorkingDays=new Array();
+let fullWorkingdays=new Array();
+empDailyWageMap.forEach((value,key,map)=>{
+    if(value==8)fullWorkingdays.push(key);
+    else if (value==4)partWorkingDays.push(key);
+    else nonWorkingDays.push(key);
+});
+console.log("Full Working Days: "+fullWorkingdays);
+console.log("part Working Days"+parWorkingDays);
+console.log("Non Working Day: "+nonWorkingDays);
 
