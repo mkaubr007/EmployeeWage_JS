@@ -117,3 +117,21 @@ while(totalEmpHrs<=MAX_HRS_IN_MONTH && totalWorkingDays<NUM_OF_WORKING_DAYS){
         },
     });
 }
+let totWages=empDailyHrsAndWageArr
+            .filter(dailyHrsAndWage=> dailyHrsAndWage.dailyWage>0)
+            .reduce((totWages,dailyHrsAndWage)=>totWages+=dailyHrsAndWage.dailyWage,0);
+let totalHours=empDailyHrsAndWageArr
+            .filter(dailyHrsAndWage=>dailyHrsAndWage.dailyWage>0)
+            .reduce((totalHours,dailyHrsAndWage)=>totalHours+=dailyHrsAndWage.dailyHours,0);
+console.log("Total Hours: "+totalHours+"Total Wages: "+totWages);
+ process.stdout.write("Logging Full Work Days")
+ empDailyHrsAndWageArr.filter(dailyHrsAndWage=>dailyHrsAndWage.dailyHours==8)
+                      .forEach(dailyHrsAndWage=>process.stdout.write(dailyHrsAndWage.toString()));
+let partWorkingDayArr=empDailyWageArr
+                        .filter(dailyHrsAndWage=>dailyHrsAndWage.dailyHours==4)
+                        .map(dailyHrsAndWage=>dailyHrsAndWage.toString());
+console.log("PartWorkingDayString: "+partWorkingDayArr);
+let nonWorkingDay=empDailyWageArr
+                    .filter(dailyHrsAndWage=>dailyHrsAndWage.dailyHours==0)
+                    .map(dailyHrsAndWage=>dailyHrsAndWage.dayNum);
+console.log("NonWorkingDayNums: "+nonWorkingDayNums);                   
